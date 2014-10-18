@@ -1,0 +1,54 @@
+{
+  "name": "w3gram",
+  "version": "0.1.0",
+  "description": "W3gram Push Notification JavaScript Client Library",
+  "keywords": ["push", "notifications", "w3gram"],
+  "homepage": "https://github.com/pwnall/w3gram-js",
+  "author": "Victor Costan <victor@costan.us> (http://www.costan.us)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pwnall/w3gram-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pwnall/w3gram-js/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.32"
+  },
+  "dependencies": {
+    "es6-promise-polyfill": ">= 1.0.0",
+    "open": ">= 0.0.5",
+    "ws": ">= 0.4.32",
+    "xhr2": ">= 0.1.0"
+  },
+  "devDependencies": {
+    "async": ">= 0.9.0",
+    "chai": ">= 1.9.2",
+    "body-parser": ">= 1.9.0",
+    "codo": ">= 2.0.9",
+    "coffee-script": ">= 1.8.0",
+    "cors": ">= 2.4.2",
+    "express": ">= 4.9.7",
+    "fs-extra": ">= 0.11.0",
+    "glob": ">= 4.0.5",
+    "mocha": ">= 1.21.5",
+    "setimmediate": ">= 1.0.2",
+    "sinon": ">= 1.10.3",
+    "sinon-chai": ">= 2.3.1",
+    "source-map-support": ">= 0",
+    "uglify-js": ">= 2.4.15",
+    "watch": ">= 0.11.0",
+    "w3gram-server": ">= 0.2.1"
+  },
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "src": "src",
+    "test": "test"
+  },
+  "scripts": {
+    "prepublish": "node node_modules/coffee-script/bin/cake build",
+    "test": "node node_modules/coffee-script/bin/cake test"
+  }
+}

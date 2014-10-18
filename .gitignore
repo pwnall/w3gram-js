@@ -1,0 +1,27 @@
+# Vim.
+*.swp
+
+# OSX
+.DS_Store
+
+# Npm modules.
+/node_modules
+
+# Node output.
+npm-debug.log
+
+# Vendored javascript modules.
+test/vendor
+
+# Build output.
+lib/w3gram.js
+lib/w3gram.min.js
+lib/w3gram.min.map
+test/js
+tmp/*.js
+
+# Auto-generated documentation.
+doc/
+
+# Node packaging output.
+w3gram-*.tgz

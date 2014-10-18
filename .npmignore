@@ -1,0 +1,38 @@
+# Vim.
+*.swp
+.vimrc
+
+# OSX
+.DS_Store
+
+# Git.
+.git
+
+# Npm modules.
+/node_modules
+
+# Node output.
+npm-debug.log
+
+# Vendored javascript modules.
+test/vendor
+
+# Minified library.
+lib/dropbox.min.js
+lib/dropbox.min.map
+
+# Sample apps.
+samples
+
+# Test build output.
+test/js
+tmp/*.js
+
+# Test code that is not related to node.js.
+test/html
+
+# Auto-generated documentation.
+doc/
+
+# Node packaging output.
+w3gram-*.tgz
