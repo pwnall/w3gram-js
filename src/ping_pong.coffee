@@ -9,7 +9,7 @@ class W3gram._.PingPong
   #   to the estimated connection RTT to compute the Ping timeout
   constructor: (options) ->
     options ||= {}
-    @_silenceTimeout = options.pingTimeoutMs or 5000
+    @_silenceTimeout = options.silenceTimeoutMs or 5000
     @_roundTrip = options.rttMs or 20000
     @_pingSlack = options.pingSlackMs or 5000
     @_nextPongNonce = 0
@@ -31,7 +31,7 @@ class W3gram._.PingPong
   # @param {Object} the data in the Pong
   receivedPong: (data) ->
     if data.nonce is @_pongNonce
-      roundTrip = Date.now() - message.ts
+      roundTrip = Date.now() - data.ts
       @_roundTrip = @_roundTrip * 0.2 + roundTrip * 0.8
     @_resetSilenceTimer()
     return
@@ -75,7 +75,6 @@ class W3gram._.PingPong
   _onSilenceTimeout: ->
     return if @_silenceTimer is null  # The timer got reset.
     @_silenceTimer = null
-    return
 
     # We have an outgoing Ping, no need to send another once.
     return if @_pingTimer isnt null

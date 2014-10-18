@@ -18,11 +18,14 @@ class W3gram._.WsClient
     @_wsUrl = wsUrl
     @_ws = null
     @_pingPong = new W3gram._.PingPong options
-    @_pingPong.onPing = @sendPing.bind @
-    @_pingPong.onPingTimeout = => @close 4000, 'Ping timeout'
+    @_pingPong.onPing = (data) =>
+      @sendPing data
+    @_pingPong.onPingTimeout = =>
+      @close 4000, 'Ping timeout'
 
     @_resolveClosed = null
     @_resolveConnected = null
+    @connected = null
     @closed = new W3gram._.Promise (resolve) =>
       @_resolveClosed = resolve
       @connected = new W3gram._.Promise (resolve) =>

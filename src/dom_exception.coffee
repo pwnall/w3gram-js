@@ -2,6 +2,8 @@
 #
 # The real DOMException class does not have a constructor, so we must use this
 # mock to issue errors that mostly match the spec.
+#
+# @see https://developer.mozilla.org/en-US/docs/Web/API/DOMException
 class W3gram._.DOMException
   # Creates a DOMException.
   #
