@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pwnall/w3gram-js.svg)](https://travis-ci.org/pwnall/w3gram-js)
 [![API Documentation](http://img.shields.io/badge/API-Documentation-ff69b4.svg)](http://coffeedoc.info/github/pwnall/w3gram-js)
-[![NPM Version](http://img.shields.io/npm/v/w3gram-js.svg)](https://www.npmjs.org/package/w3gram)
+[![NPM Version](http://img.shields.io/npm/v/w3gram.svg)](https://www.npmjs.org/package/w3gram)
 
 This is a [W3c Push API](http://w3c.github.io/push-api/) polyfill that uses the
 [W3gram push notification server](https://github.com/pwnall/w3gram-server). The
