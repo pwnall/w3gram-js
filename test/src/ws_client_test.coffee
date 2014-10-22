@@ -32,13 +32,13 @@ describe 'W3gram._.WsClient', ->
       @wsClient = new WsClient @wsUrl,
           silenceTimeoutMs: 10, pingSlackMs: 20, rttMs: 20
 
-    it 'sends 8-10 pings in 100ms', (done) ->
+    it 'sends 7-10 pings in 100ms', (done) ->
+      pingSpy = @sandbox.spy @wsClient, 'sendPing'
+      closeSpy = @sandbox.spy @wsClient, 'close'
       @wsClient.connected.then =>
-        pingSpy = @sandbox.spy @wsClient, 'sendPing'
-        closeSpy = @sandbox.spy @wsClient, 'close'
         onTimeout = =>
           expect(closeSpy.callCount).to.equal 0
-          expect(pingSpy.callCount).to.be.at.least 8
+          expect(pingSpy.callCount).to.be.at.least 7
           expect(pingSpy.callCount).to.be.at.most 10
           done()
         setTimeout onTimeout, 100
