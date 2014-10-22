@@ -27,7 +27,6 @@ describe 'W3gram._.WsClient', ->
   afterEach ->
     @sandbox.restore()
 
-
   describe 'with hyper-ping settings', ->
     beforeEach ->
       @wsClient = new WsClient @wsUrl,
@@ -44,3 +43,11 @@ describe 'W3gram._.WsClient', ->
           done()
         setTimeout onTimeout, 100
       null
+
+
+  describe 'with a server that closes using an odd error code', ->
+    it 'does not crash', (done) ->
+      wsUrl = "#{testXhrServer}/ws/close/1003".replace(/^http/, 'ws')
+      @wsClient = new WsClient wsUrl
+      @wsClient.closed.then ->
+        done()

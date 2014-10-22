@@ -49,6 +49,11 @@ class W3gram._.WsClient
     @_ws.onopen = null
 
     code or= 1000
+    if code > 1000 and code < 3000
+      # NOTE: when the server closes the WebSocket first, we try to close it
+      #       with the same code; this causes a security error in the browser
+      #       if the server uses 1xxx codes
+      code = 1000
     @_ws.close code, message
     @_ws = null
 
