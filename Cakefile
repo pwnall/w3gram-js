@@ -23,14 +23,13 @@ task 'watch', ->
   setupWatch()
 
 task 'test', ->
-  vendor ->
-    build ->
-      test.node (code) ->
-        process.exit code
+  build ->
+    test.node (code) ->
+      process.exit code
 
 task 'webtest', ->
-  vendor ->
-    build ->
+  build ->
+    vendor ->
       test.web()
 
 task 'vendor', ->
@@ -62,11 +61,11 @@ setupWatch = (callback) ->
       buildNeeded = false
       cleanNeeded = false
       console.log "Doing a clean build"
-      clean -> build -> test.fast()
+      clean -> build -> test.node()
     else if buildNeeded
       buildNeed = false
       console.log "Building"
-      build -> test.fast()
+      build -> test.node()
   process.nextTick onTick
 
   watchMonitor = (monitor) ->
