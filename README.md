@@ -94,7 +94,7 @@ Add the dependency to your `package.json`.
 
 ```javascript
 "dependencies": {
-  "w3gram": "0.2.1"
+  "w3gram": "0.1.2"
 }
 ```
 

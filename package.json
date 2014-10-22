@@ -1,6 +1,6 @@
 {
   "name": "w3gram",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "W3gram Push Notification JavaScript Client Library",
   "keywords": ["push", "notifications", "w3gram"],
   "homepage": "https://github.com/pwnall/w3gram-js",
