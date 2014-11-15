@@ -38,8 +38,20 @@ describe 'W3gram._.jsonRequest', ->
           expect(error.httpCode).to.equal 500
 
   describe 'with an invalid URL', ->
-    it 'rejects a network error', ->
+    it 'rejects on invalid IP', ->
       W3gram._.jsonRequest('GET', 'http://0.0.0.0/fail')
+        .then (result) ->
+          expect('Should reject promise').to.equal false
+        .catch (error) ->
+          expect(error).to.be.ok
+          expect(error.name).to.equal 'NetworkError'
+          expect(error.message).to.equal(
+              'Could not reach Push Notification Server')
+          expect(error.httpCode).to.be.undefined
+
+    it 'rejects on invalid DNS', ->
+      W3gram._.jsonRequest('GET',
+                           'https://invalid.domain.no-such-domain.com/fail')
         .then (result) ->
           expect('Should reject promise').to.equal false
         .catch (error) ->

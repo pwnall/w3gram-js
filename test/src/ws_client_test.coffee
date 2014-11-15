@@ -36,7 +36,7 @@ describe 'W3gram._.WsClient', ->
       pingSpy = @sandbox.spy @wsClient, 'sendPing'
       closeSpy = @sandbox.spy @wsClient, 'close'
       @wsClient.connected.then =>
-        onTimeout = =>
+        onTimeout = ->
           expect(closeSpy.callCount).to.equal 0
           expect(pingSpy.callCount).to.be.at.least 7
           expect(pingSpy.callCount).to.be.at.most 10
@@ -49,5 +49,7 @@ describe 'W3gram._.WsClient', ->
     it 'does not crash', (done) ->
       wsUrl = "#{testXhrServer}/ws/close/1003".replace(/^http/, 'ws')
       @wsClient = new WsClient wsUrl
-      @wsClient.closed.then ->
+      @wsClient.closed.then (closedInfo) =>
+        expect(closedInfo.client).to.equal @wsClient
+        expect(closedInfo.code).to.be.a 'number'
         done()

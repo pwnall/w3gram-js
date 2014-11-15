@@ -10,6 +10,8 @@ class W3gram.PushRegistrationManager
   # @option options {String} device this receiver's device ID
   # @option options {String} token the server-issued token for this receiver's
   #   device ID
+  # @option options {Object} timing advanced timing options passed to
+  #   {W3gram.PushRegistration} and to {W3gram._.WsClient}
   constructor: (options) ->
     unless options.server
       throw new Error 'The server option must be a W3gram server URL'
@@ -22,6 +24,7 @@ class W3gram.PushRegistrationManager
 
     @_registration = null
     @_app = new W3gram._.App server: options.server, key: options.key
+    @_timing = options.timing or {}
     return
 
   # Registers this device with the Push Notification server.
@@ -34,7 +37,7 @@ class W3gram.PushRegistrationManager
 
     @_app.register(@_deviceId, @_token).then (registration) =>
       unless @_registration
-        @_registration = new W3gram.PushRegistration registration
+        @_registration = new W3gram.PushRegistration registration, @_timing
         # TODO(pwnall): store registration info
       @_registration._connected.then =>
         @_registration

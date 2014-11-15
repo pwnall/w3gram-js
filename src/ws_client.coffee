@@ -58,7 +58,7 @@ class W3gram._.WsClient
     @_ws = null
 
     @_pingPong.disconnected()
-    @_resolveClosed code: code, reason: message
+    @_resolveClosed client: @, code: code, reason: message
     return
 
   # Sends a Ping request to the W3gram server.
