@@ -13,14 +13,14 @@ build = (callback) ->
 buildCode = (callback) ->
   # Ignoring ".coffee" when sorting.
   # We want "auth_driver.coffee" to sort before "auth_driver/browser.coffee"
-  source_files = glob.sync 'src/**/*.coffee'
-  source_files.sort (a, b) ->
+  sourceFiles = glob.sync 'src/**/*.coffee'
+  sourceFiles.sort (a, b) ->
     a.replace(/\.coffee$/, '').localeCompare b.replace(/\.coffee$/, '')
 
   # TODO(pwnall): add --map after --compile when CoffeeScript #2779 is fixed
   #               and the .map file isn't useless
   command = 'node node_modules/coffee-script/bin/coffee --output lib ' +
-      "--compile --join w3gram.js #{source_files.join(' ')}"
+      "--compile --join w3gram.js #{sourceFiles.join(' ')}"
 
   run command, noExit: true, noOutput: true, (exitCode) ->
     if exitCode is 0
@@ -32,7 +32,7 @@ buildCode = (callback) ->
     fs.mkdirSync 'tmp' unless fs.existsSync 'tmp'
     commands = []
     commands.push 'node node_modules/coffee-script/bin/coffee ' +
-        '--output tmp --compile ' + source_files.join(' ')
+        '--output tmp --compile ' + sourceFiles.join(' ')
     async.forEachSeries commands, run, ->
       # run should exit on its own. This is mostly for clarity.
       process.exit 1
