@@ -15,9 +15,9 @@ else if typeof window isnt 'undefined' and typeof navigator isnt 'undefined'
 
 else if typeof self isnt 'undefined' and typeof navigator isnt 'undefined'
   # Running inside a Web worker.
-  W3gramEnvGlobal = self
+  W3gramGlobal = self
   # NOTE: browsers that implement Web Workers also implement the ES5 bind.
-  W3gramEnvRequire = self.importScripts.bind self
+  W3gramRequire = self.importScripts.bind self
   self.W3gram = W3gram
 
 else
