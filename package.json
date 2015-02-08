@@ -14,7 +14,8 @@
     "url": "https://github.com/pwnall/w3gram-js/issues"
   },
   "engines": {
-    "node": ">= 0.10.35"
+    "iojs": "1.x",
+    "node": "0.12.x"
   },
   "dependencies": {
     "es6-promise-polyfill": ">= 1.0.0",

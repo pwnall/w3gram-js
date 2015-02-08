@@ -15,6 +15,7 @@ describe 'W3gram._.PingPong', ->
 
     it 'issues 8-10 ping requests in 100ms', (done) ->
       @pingPong.onPingTimeout = ->
+        @pingPong.disconnected()
         expect('Should not timeout').to.equal false
         done()
       onTimeout = =>

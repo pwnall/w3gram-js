@@ -32,7 +32,7 @@ class W3gram._.PingPong
   receivedPong: (data) ->
     if data.nonce is @_pongNonce
       roundTrip = Date.now() - data.ts
-      @_roundTrip = @_roundTrip * 0.2 + roundTrip * 0.8
+      @_roundTrip = @_roundTrip * 0.875 + roundTrip * 0.125
     @_resetSilenceTimer()
     return
 
