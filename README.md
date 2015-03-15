@@ -65,7 +65,7 @@ pages, use the following snippet to initialize the W3gram client library.
 ```javascript
 W3gram.setupPushManager({
   "server": "https://your-w3gram-server.herokuapp.com",
-  "app": "your-api-key",
+  "key": "your-api-key",
   "device": "the-device-id",
   "token": "token-for-the-device-id"
 });
