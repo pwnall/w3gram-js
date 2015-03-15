@@ -130,7 +130,7 @@ class W3gram._.WsClient
   # Called when an internal error occurs in the WebSocket code.
   _onSocketError: (error) ->
     if @_ws isnt null
-      @close 4000, event.message
+      @close 4000, error.message
     return
 
   # Called when a WebSocket frame is received.
