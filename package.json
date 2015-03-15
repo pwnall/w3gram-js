@@ -42,7 +42,7 @@
     "watch": ">= 0.13.0",
     "w3gram-server": ">= 0.2.2"
   },
-  "main": "lib/index.js",
+  "main": "lib/w3gram.js",
   "directories": {
     "lib": "lib",
     "src": "src",
