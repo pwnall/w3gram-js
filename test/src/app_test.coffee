@@ -120,12 +120,8 @@ describe 'W3gram._.App', ->
     it 'resolves to a DeviceRegistration', ->
       @app.register(@deviceId, @token).then (registration) =>
         expect(registration).to.be.instanceOf W3gram._.DeviceRegistration
-        expect(registration.receiverId).to.be.a 'string'
-        expect(registration.pushUrl).to.equal "#{@serverUrl}/push"
-        expect(registration.serverUrl).to.equal @serverUrl
-        expect(registration.apiKey).to.equal @app.apiKey
-        expect(registration.deviceId).to.equal @deviceId
-        expect(registration.token).to.equal @token
+        expect(registration.pushUrl).to.match ///^#{@serverUrl}\/push\////
+        expect(registration.routeUrl).to.match ///^#{@serverUrl}\/route\////
 
     it 'rejects gracefully if the token is wrong', ->
       @app.register(@deviceId, @token + '-but-wrong')

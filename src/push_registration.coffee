@@ -18,7 +18,6 @@ class W3gram.PushRegistration
     @_deviceRegistration = deviceRegistration
     unless @_deviceRegistration instanceof W3gram._.DeviceRegistration
       throw new Error 'Illegal constructor'
-    @registrationId = deviceRegistration.receiverId
     @endpoint = deviceRegistration.pushUrl
 
     @_options = options
@@ -34,9 +33,6 @@ class W3gram.PushRegistration
     @_boundOnNotification = @_onNotification.bind @
     @_boundOnWsClosed = @_onWsClosed.bind @
     @_connect()
-
-  # @property {String} the ID used to push notifications to the device
-  registrationId: null
 
   # @property {String} the push notification server URL
   endpoint: null

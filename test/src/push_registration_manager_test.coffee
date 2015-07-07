@@ -19,7 +19,6 @@ describe 'W3gram.PushRegistrationManager', ->
     it 'resolves to a PushRegistration', ->
       @manager.register().then (registration) ->
         expect(registration).to.be.an.instanceOf W3gram.PushRegistration
-        expect(registration.registrationId).to.be.a 'string'
         expect(registration.endpoint).to.be.a 'string'
         expect(registration.endpoint).to.match(/^https?\:/)
 

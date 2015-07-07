@@ -3,44 +3,24 @@ DeviceRegistration = W3gram._.DeviceRegistration
 describe 'W3gram._.DeviceRegistration', ->
   beforeEach ->
     @fakeRegistration = new DeviceRegistration(
-      push: 'wss://w3gram-test.herokuapp.com/push'
-      receiver: 'receiver-id'
-      server: 'https://w3gram-test.herokuapp.com'
-      app: 'news-app'
-      device: 'tablet-device-id'
-      token: 'tablet-token'
+      push: 'https://w3gram-test.herokuapp.com/push/1.device.receiver-id'
+      route: 'https://w3gram-test.herokuapp.com/route/1.device.listener-id'
     )
 
   describe '#constructor', ->
     it 'parses pushUrl', ->
       expect(@fakeRegistration.pushUrl).to.equal(
-        'wss://w3gram-test.herokuapp.com/push')
+        'https://w3gram-test.herokuapp.com/push/1.device.receiver-id')
 
-    it 'parses receiverId', ->
-      expect(@fakeRegistration.receiverId).to.equal 'receiver-id'
-
-    it 'parses serverUrl', ->
-      expect(@fakeRegistration.serverUrl).to.equal(
-        'https://w3gram-test.herokuapp.com')
-
-    it 'parses apiKey', ->
-      expect(@fakeRegistration.apiKey).to.equal 'news-app'
-
-    it 'parses deviceId', ->
-      expect(@fakeRegistration.deviceId).to.equal 'tablet-device-id'
-
-    it 'parses token', ->
-      expect(@fakeRegistration.token).to.equal 'tablet-token'
+    it 'parses routeUrl', ->
+      expect(@fakeRegistration.routeUrl).to.equal(
+        'https://w3gram-test.herokuapp.com/route/1.device.listener-id')
 
   describe '#toJSON', ->
     it 'returns the correct object', ->
       expect(@fakeRegistration.toJSON()).to.deep.equal(
-        push: 'wss://w3gram-test.herokuapp.com/push'
-        receiver: 'receiver-id'
-        server: 'https://w3gram-test.herokuapp.com'
-        app: 'news-app'
-        device: 'tablet-device-id'
-        token: 'tablet-token'
+        push: 'https://w3gram-test.herokuapp.com/push/1.device.receiver-id'
+        route: 'https://w3gram-test.herokuapp.com/route/1.device.listener-id'
       )
 
     it 'round-trips through the constructor', ->
@@ -71,8 +51,8 @@ describe 'W3gram._.DeviceRegistration', ->
       @registration.push(answer: 42).then (result) =>
         expect(result).to.equal true
 
-    it 'rejects gracefully if the receiver ID is wrong', ->
-      @registration.receiverId += '-but-wrong'
+    it 'rejects gracefully if the push URL is wrong', ->
+      @registration.pushUrl += '-but-wrong'
       @registration.push(answer: 42)
         .then (result) ->
           expect('Should not resolve').to.equal false
@@ -89,17 +69,17 @@ describe 'W3gram._.DeviceRegistration', ->
         expect(wsUrl).to.be.a 'string'
         expect(wsUrl).to.match /^ws\:/
 
-    it 'rejects gracefully if the receiver ID is wrong', ->
-      @registration.receiverId += '-but-wrong'
+    it 'rejects gracefully if the route URL is wrong', ->
+      @registration.routeUrl += '-but-wrong'
       @registration.route()
         .then (wsUrl) ->
           expect('Should not resolve').to.equal false
         .catch (error) ->
           expect(error).to.be.ok
           expect(error.name).to.equal 'SecurityError'
-          expect(error.httpCode).to.equal 410
+          expect(error.httpCode).to.equal 400
           expect(error.message).to.equal(
-            'Push Notification Server error: Invalid or outdated receiver ID')
+            'Push Notification Server error: Invalid listener ID')
 
     it 'returns a WebSocket URL that responds to #push', ->
       @registration.route().then (wsUrl) =>
