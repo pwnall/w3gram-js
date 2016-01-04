@@ -1,10 +1,20 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.12"
   - "4"
+  - "5"
+compiler: clang-3.6
+env:
+  - CXX=clang-3.6
 addons:
-  postgresql: "9.3"
+  apt:
+    sources:
+      - llvm-toolchain-precise-3.6
+      - ubuntu-toolchain-r-test
+    packages:
+      - clang-3.6
+      - g++-4.8
+  postgresql: "9.4"
 before_script:
   - psql -c 'create database w3gram_test;' -U postgres
 env: DATABASE_URL=postgresql://postgres@localhost/w3gram_test
