@@ -11,7 +11,7 @@ if typeof WebSocket is 'undefined'
   # Try to load the polyfill.
   W3gram._.WebSocket = W3gramRequire 'ws'
 else
-  # Native promises are available.
+  # Native WebSockets are available.
   W3gram._.WebSocket = WebSocket
 
 
